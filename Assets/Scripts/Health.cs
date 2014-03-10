@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Health : MonoBehaviour {
-	public int health;
+	public int health = 100;
 	bool canLoseHealth = true;
 	bool dead = false;
 

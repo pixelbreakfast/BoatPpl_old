@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Contact : MonoBehaviour {
-	public float repelThreshhold;
-	public float maxForce;
+public class Contact : uLink.MonoBehaviour {
+	public float repelThreshhold = 0.4f;
+	public float maxForce = 0.01f;
 	List<Collider> colliders = new List<Collider>();
 	//List<Collider> ignore = new List<Collider>();
 
@@ -30,7 +30,12 @@ public class Contact : MonoBehaviour {
 				CharacterController characterController = collider.transform.gameObject.GetComponent<CharacterController>() as CharacterController;
 					if(characterController != null && characterController.gameObject.activeInHierarchy) 
 					{
+						if(transform.parent.gameObject.GetComponent<uLinkNetworkView>().isMine) {
 						characterController.Move(vector3Force);
+						} else {
+							Debug.Log ("moving networked actor");
+						}
+						
 					}
 			}
 		}

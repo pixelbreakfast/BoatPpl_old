@@ -2,20 +2,18 @@
 using System.Collections;
 
 [RequireComponent (typeof (CharacterController))]
-public class PlayerController : MonoBehaviour {
+public class PlayerController : uLink.MonoBehaviour {
 
-	public CharacterController controller;
+	CharacterController controller;
 	 float moveSpeed = 2;
 	 float gravity = 5;
 
-
-	// Use this for initialization
 	void Start () {
 		if(controller == null) {
 			controller = gameObject.GetComponent<CharacterController>() as CharacterController;
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -37,10 +35,13 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKey(KeyCode.S)) {
 			move += -transform.forward * moveSpeed * Time.deltaTime;
 		}
+
 		
-
 		controller.Move (move);
+	}
 
-
+	[RPC]
+	public void moveCharacterController(Vector3 force) {
+		controller.Move (force);
 	}
 }

@@ -31,7 +31,7 @@ public class SceneManager : MonoBehaviour {
 	
 	}
 
-	public void IgnoreColliders() {
+	public void OnPlayerConnected (NetworkPlayer newPlayer) {
 		UnityEngine.Object[] characterControllers = Object.FindObjectsOfType (typeof(CharacterController));
 		
 		foreach(CharacterController characterControllerA in characterControllers)

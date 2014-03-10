@@ -6,7 +6,7 @@ public class SpawnNPCs : MonoBehaviour {
 	public float spawnDistance;
 	public Grid grid;
 	public GameObject proxyPrefab;
-	public GameObject ownerPrefab;
+	public GameObject creatorPrefab;
 
 	public int width = 30;
 	public int length = 30;
@@ -29,9 +29,8 @@ public class SpawnNPCs : MonoBehaviour {
 				RaycastHit hit;
 				if(Physics.Raycast(ray,out hit, raycastRange)) {
 
-					GameObject newNPC = uLink.Network.Instantiate(proxyPrefab,ownerPrefab,hit.point,Quaternion.Euler(Vector3.zero),0,"") as GameObject;
+					GameObject newNPC = uLink.Network.Instantiate(proxyPrefab,creatorPrefab,hit.point,Quaternion.Euler(Vector3.zero),0,"") as GameObject;
 
-					//GameObject newNPC = GameObject.Instantiate() as GameObject;
 					SceneManager.Instance.actors.Add (newNPC.GetComponent<Actor>());
 					newNPC.GetComponent<AIController>().currentGrid = grid;
 				}
